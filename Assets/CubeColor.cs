@@ -7,6 +7,7 @@ public class CubeColor : MonoBehaviour
     public int selectedcube = -1;
     private int dayoftheweek;
 
+
     // Use this for initialization
     private void Start() {
 
@@ -28,12 +29,20 @@ public class CubeColor : MonoBehaviour
 
     private void set_scale_of_cubes()
     {
+		Debug.Log(selectedcube);
         GameObject o;
-        if (selectedcube > -1)
+		if (selectedcube >= 4) 
+		{
+			o = GameObject.Find("Cube" + 4);
+			o.transform.localScale = new Vector3(1, 1, 1);
+			selectedcube = -1;
+		}
+        if (selectedcube > -1 && selectedcube < 4)
         {
             o = GameObject.Find("Cube" + selectedcube);
             o.transform.localScale = new Vector3(1, 1, 1);
         }
+
         selectedcube++;
         o = GameObject.Find("Cube" + selectedcube);
         o.transform.localScale = new Vector3(1, 2, 1);
@@ -62,4 +71,5 @@ public class ColorData
 public class CubeData
 {
     // When we find a cube, we should put its data in here for tidier access
+
 }
